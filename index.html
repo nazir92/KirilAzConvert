@@ -5,8 +5,6 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf8" />
 	<meta name="author" content="admin" />
     <link rel="stylesheet" href="style.css"/>
-    <script src="jquery.js"></script>
-    <script src="script.js"></script>
 
 	<title>KirilConvert</title>
 </head>
@@ -21,6 +19,29 @@ Enter text here...</textarea>
 <textarea  rows="20" cols="100" name="aztext" id="textaz" disabled >
 Converted text...</textarea>
 </div>
+<script>
+var letterPairs={"а":"a","б":"b","ҹ":"c","ч":"ç","д":"d","е":"e","ә":"ə","ф":"f","ҝ":"g","ғ":"ğ","һ":"h","х":"x","ы":"ı","и":"i","ж":"j","к":"k","г":"q","л":"l","м":"m","н":"n","о":"o","ө":"ö","п":"p","р":"r","с":"s","ш":"ş","т":"t","у":"u","ү":"ü","в":"v","ј":"y","з":"z"
+	,"А":"A","Б":"B","Ҹ":"C","Ч":"Ç","Д":"D","Е":"E","Ә":"Ə","Ф":"F","Ҝ":"G","Ғ":"Ğ","Һ":"H","Х":"X","Ы":"I","И":"İ","Ж":"J","К":"K","Г":"Q","Л":"L","М":"M","Н":"N","О":"O","Ө":"Ö","П":"P","Р":"R","С":"S","Ш":"Ş","Т":"T","У":"U","Ү":"Ü","В":"V","Ј":"Y","З":"Z"
+};
+document.getElementById("textkiril").addEventListener("keyup", myFunction);
 
+function myFunction() {
+    var kirilText = document.getElementById("textkiril");
+    var latinText=document.getElementById("textaz");
+    latinText.value=convert(kirilText.value);	
+}
+
+
+
+function convert(kirilText){
+        for(var i=0;i<kirilText.length;i++){
+	if(letterPairs[kirilText[i]]==undefined){
+            continue;
+         }		
+	    kirilText=kirilText.substr(0, i) + letterPairs[kirilText[i]] + kirilText.substr(i + 1);	            
+        }
+        return kirilText;
+    } 
+</script>
 </body>
 </html>
